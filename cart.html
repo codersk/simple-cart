@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <title>Shopping Cart</title>
+
+    <!--  Developed by : Sandeep Kumbhar (Software Engineer) | sandeepkumbhar007@gmail.com -->
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+  </head>
+  <body ng:app="" class="ng-scope container">
+    <h2>Shopping Cart</h2>
+    <div ng:controller="CartForm" class="ng-scope">
+      <div class="row table item-title">
+        <div class="col-md-2"><h4>Image</h4></div>
+        <div class="col-md-4"><h4>Description</h4></div>
+        <div class="col-md-1"><h4>Cost</h4></div>
+        <div class="col-md-1"><h4>Qty</h4></div>
+        <div class="col-md-2"><h4></h4></div>
+        <div class="col-md-2 currency"><h4>Total</h4></div>
+      </div>
+      <div ng:repeat="item in invoice.items" class="ng-scope row item-title">
+        <div class="col-md-2">
+          <div class="ng-binding"><img src="http://lorempixel.com/400/200/food"></div>
+        </div>
+        <div class="col-md-4 left">
+          {{item.description}}
+        </div>
+        <div class="col-md-1">
+          <div class="ng-binding currency">{{ item.cost | currency }}</div>
+        </div>
+        <div class="col-md-1">
+          <input type="number" ng:model="item.qty" ng:required="" class="input-mini ng-pristine ng-valid ng-valid-required ng-valid-number" class="form-control">
+        </div>
+        <div class="col-md-2">
+          <a href="" ng:click="removeItem($index)" class="btn btn-danger btn-xs">Remove</a>
+        </div>
+        <div class="col-md-2 ng-binding currency">{{item.qty * item.cost | currency}}</div>
+      </div>
+      <div class="row line-item">
+        <div class="col-md-2"><a href="" ng:click="addItem()" class="btn btn-small btn-default">add item</a></div>
+        <div class="col-md-4 col-md-offset-6">
+          <div class="row">
+            <div class="col-md-6 gray">Subotal:</div>
+            <div class="col-md-6 ng-binding currency">{{total() | currency}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 gray">Tax(5%) :</div>
+            <div class="col-md-6 ng-binding currency">{{tax() | currency}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 gray">Shipping:</div>
+            <div class="col-md-6 ng-binding currency">{{shipping() | currency}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 gray">Grand Total:</div>
+            <div class="col-md-6 ng-binding currency">{{grandtotal() | currency}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="row cart-footer">
+        <div class="col-md-1 col-md-offset-11">
+          <button type="submit" class="btn btn-lg btn-success" data-toggle="modal" data-target="#login">Checkout</button>
+        </div>
+      </div>
+      <div class="modal fade" id="login" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Please login to checkout</h4>
+            </div>
+            <div class="modal-body">
+              <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input id="user" type="text" class="form-control" name="user" value="" placeholder="User">
+                </div>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                  <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" href="#" class="btn btn-primary "><i class="glyphicon glyphicon-log-in"></i> Log in</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

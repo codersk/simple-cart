@@ -1,0 +1,30 @@
+/* Developed by : Sandeep Kumbhar (Software Engineer) | sandeepkumbhar007@gmail.com */
+
+img{
+  width: 100px;
+  height: 100px;
+}
+input {
+  width: 50px;
+}
+.item-title{
+  border-bottom: solid 1px #ccc;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+  width: 100%;
+}
+.line-item,.cart-footer{
+  padding-top: 15px;
+  width: 100%;
+}
+.currency{
+  font-weight: bold;
+  text-align: right;
+}
+.gray{
+  color: #ACAAB4;
+}
+.left{
+  text-align: left;
+}
